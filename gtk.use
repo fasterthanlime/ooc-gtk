@@ -1,0 +1,4 @@
+Name: GTK+ 2.0
+Description: GNU User interface Toolkit
+Pkgs: gtk+-2.0
+Includes: gtk/gtk.h

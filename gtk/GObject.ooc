@@ -1,9 +1,7 @@
 use gtk
-include gtk/gtk
 import gtk.Gtk
 
 GObjectStruct: cover from GtkObject
-
 
 /**
  * The base of the GObject hierarchy. Can send and receive signals
@@ -21,10 +19,6 @@ GObject: cover from GObjectStruct* {
 
 }
 
-GInt: cover from gint
-GULong: cover from gulong
-GPointer: cover from gpointer
-GChar: cover from gchar
 GTK_OBJECT: extern func (GObject) -> GObject
 GTK_SIGNAL_FUNC: extern func (Func) -> Func
 gtk_signal_connect: extern func (GObject, GChar*, Func, GPointer) -> GULong

@@ -1,27 +1,25 @@
 use gtk
-include gtk/gtk
-
-import gtk.GObject, gtk.Widget
+import gtk.[Gtk, GObject, Container]
 
 WindowStruct: cover from GtkWindow
 
 /**
  * A simple Gtk window
  */
-Window: cover from WindowStruct* extends Widget {
+Window: cover from WindowStruct* extends Container {
 	
 	/**
 	 * Create a new top-level window
 	 */
-	new: func -> Window {
-		return gtk_window_new(GTK_WINDOW_TOPLEVEL) as Window
+	new: func -> This {
+		return gtk_window_new(GTK_WINDOW_TOPLEVEL) as This
 	}
 	
 	/**
 	 * Create a new titled top-level window
 	 */
-	new: func ~with_title (title: String) -> Window {
-		w := new Window
+	new: func ~with_title (title: String) -> This {
+		w := this()
 		w setTitle(title);
 		return w
 	}
@@ -29,13 +27,9 @@ Window: cover from WindowStruct* extends Widget {
 	/**
 	 * Change the title of this window
 	 */
-	setTitle: func (title: String) {
-		gtk_window_set_title(GTK_WINDOW(this), title);
-	}
+	setTitle: extern(gtk_window_set_title) func (String)
 	
 }
 
 GTK_WINDOW_TOPLEVEL: extern Int
-GTK_WINDOW: extern func (Window) -> Window
 gtk_window_new: extern func (Int) -> Window
-gtk_window_set_title: extern func (Window, GChar*)

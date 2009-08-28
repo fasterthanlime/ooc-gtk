@@ -1,4 +1,8 @@
+use gtk
 import gtk.GObject
+
+/* Module-load code */
+Gtk init(null, null)
 
 /**
  * Singleton GTK cover for initialization etc.
@@ -38,14 +42,16 @@ Gtk: cover {
 	 * @param object
 	 */
 	quitAddDestroy: static func (object: GObject) {
-		gtk_quit_add_destroy(1, GTK_OBJECT(object));
+		gtk_quit_add_destroy(1, GTK_OBJECT(object))
 	}
 
 }
 
-/** Module-load code **/
-Gtk init(null, null)
-/**********************/
-
 gtk_quit_add_destroy: extern func (Int, GObject)
+
+GBool: cover from gboolean
+GInt: cover from gint
+GULong: cover from gulong
+GPointer: cover from gpointer
+GChar: cover from gchar
 

@@ -2,15 +2,14 @@ import gtk.[Gtk, Window, Button]
 
 main: func {
 	w := new Window("Hi")
-	w setUSize(800, 600) <- connect("delete_event", exit) <- showAll()
+	w setUSize(400, 200) .connect("delete_event", exit)
+	
 	b := new Button("Oh, really?")
-	b connect("pressed", haha)
-	w add(b)
+	b connect("pressed", func g_print("What's so funny ?\n")) .setBorderWidth(50)
+	
+	w add(b) .showAll()
 	Gtk main()
 }
 
-haha: func {
-	"What's so funny ?" println()
-}
-
+g_print: extern func (String, ...)
 exit: extern func

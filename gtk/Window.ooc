@@ -1,5 +1,5 @@
 use gtk
-import gtk.[Gtk, GObject, Container]
+import gtk.[Gtk, Container]
 
 WindowStruct: cover from GtkWindow
 

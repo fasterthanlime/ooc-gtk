@@ -1,12 +1,12 @@
 use gtk
 import gtk.Gtk
 
-GObjectStruct: cover from GtkObject
+_GObjectStruct: cover from GtkObject
 
 /**
  * The base of the GObject hierarchy. Can send and receive signals
  */
-GObject: cover from GObjectStruct* {
+_GObject: cover from _GObjectStruct* {
 
 	connect: func ~nodata (signalName: GChar*, callback: Func) -> GULong {
 		connect(signalName, callback, null)
@@ -19,6 +19,6 @@ GObject: cover from GObjectStruct* {
 
 }
 
-GTK_OBJECT: extern func (GObject) -> GObject
+GTK_OBJECT: extern func (_GObject) -> _GObject
 GTK_SIGNAL_FUNC: extern func (Func) -> Func
-gtk_signal_connect: extern func (GObject, GChar*, Func, GPointer) -> GULong
+gtk_signal_connect: extern func (_GObject, GChar*, Func, GPointer) -> GULong

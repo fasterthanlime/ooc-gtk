@@ -1,5 +1,5 @@
 use gtk
-import gtk.[Gtk, GObject, Window]
+import gtk.[Gtk, _GObject, Window]
 
 WidgetStruct: cover from GtkWidget {
 	window: extern GdkWindow*
@@ -9,7 +9,7 @@ WidgetStruct: cover from GtkWidget {
 /**
  * A GTK widget, such as a Button, a Label, a Checkbox
  */
-Widget: cover from WidgetStruct* extends GObject {
+Widget: cover from WidgetStruct* extends _GObject {
 	
 	/**
 	 * Set the sensitivity of this widget

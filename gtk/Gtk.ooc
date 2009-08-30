@@ -1,5 +1,5 @@
 use gtk
-import gtk.GObject
+import gtk._GObject
 
 /* Module-load code */
 Gtk init(null, null)
@@ -41,13 +41,13 @@ Gtk: cover {
 	 * of the application
 	 * @param object
 	 */
-	quitAddDestroy: static func (object: GObject) {
+	quitAddDestroy: static func (object: _GObject) {
 		gtk_quit_add_destroy(1, GTK_OBJECT(object))
 	}
 
 }
 
-gtk_quit_add_destroy: extern func (Int, GObject)
+gtk_quit_add_destroy: extern func (Int, _GObject)
 
 GBool: cover from gboolean
 GInt: cover from gint

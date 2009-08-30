@@ -1,13 +1,13 @@
 import gtk.[Gtk, Window, Button]
 
 main: func {
-	w := new Window("Hi")
-	w setUSize(400, 200) .connect("delete_event", exit)
+	win := new Window("Hi")
+	win setUSize(400, 200) .connect("delete_event", exit)
 	
-	b := new Button("Oh, really?")
-	b connect("pressed", func g_print("What's so funny ?\n")) .setBorderWidth(50)
+	button := new Button("Oh, really?")
+	button connect("clicked", func g_print("What's so funny ?\n")) .setBorderWidth(50)
 	
-	w add(b) .showAll()
+	win add(button) .showAll()
 	Gtk main()
 }
 

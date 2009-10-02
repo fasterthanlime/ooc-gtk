@@ -1,5 +1,5 @@
 use gtk
-import gtk.[Gtk, _GObject, Window]
+import gtk/[Gtk, _GObject, Window]
 
 WidgetStruct: cover from GtkWidget {
 	window: extern GdkWindow*
@@ -33,15 +33,18 @@ Widget: cover from WidgetStruct* extends _GObject {
 	/**
 	 * Force the repaint of this widget
 	 */
+	/*
 	forceRepaint: func (childrenToo: Bool) {
 		
 		while(Gtk eventsPending()) {
 			Gtk mainIteration()
 		}
-		gdk_window_invalidate_rect(this@ window, null, childrenToo)
-		gdk_window_process_updates(this@ window, childrenToo)
+		// ugly workaround
+		gdk_window_invalidate_rect(this@ as WidgetStruct window, null, childrenToo)
+		gdk_window_process_updates(this@ as WidgetStruct window, childrenToo)
 		
 	}
+	*/
 	
 	/**
 	 * Shows this widget on-screen.
@@ -83,14 +86,16 @@ Widget: cover from WidgetStruct* extends _GObject {
 	 * The height of this window
 	 */
 	getWidth: func -> Int {
-		return this@ allocation width;
+		// FIXME ugly workaround
+		return this@ as WidgetStruct allocation width;
 	}
 	
 	/**
 	 * The height of this window
 	 */
 	getHeight: func -> Int {
-		return this@ allocation height;
+		// FIXME ugly workaround
+		return this@as WidgetStruct  allocation height;
 	}
 	
 	/*

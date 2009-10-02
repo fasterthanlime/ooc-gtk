@@ -1,5 +1,5 @@
 use gtk
-import gtk._GObject
+import gtk/_GObject
 
 /* Module-load code */
 Gtk init(null, null)

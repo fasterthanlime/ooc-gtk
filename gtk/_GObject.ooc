@@ -1,5 +1,5 @@
 use gtk
-import gtk.Gtk
+import gtk/Gtk
 
 _GObjectStruct: cover from GtkObject
 

@@ -1,5 +1,5 @@
 use gtk
-import gtk.[Gtk, Container]
+import gtk/[Gtk, Container]
 
 WindowStruct: cover from GtkWindow
 
@@ -11,15 +11,15 @@ Window: cover from WindowStruct* extends Container {
 	/**
 	 * Create a new top-level window
 	 */
-	new: func -> This {
+	new: static func -> This {
 		return gtk_window_new(GTK_WINDOW_TOPLEVEL) as This
 	}
 	
 	/**
 	 * Create a new titled top-level window
 	 */
-	new: func ~with_title (title: String) -> This {
-		w := this()
+	new: static func ~with_title (title: String) -> This {
+		w := new()
 		w setTitle(title);
 		return w
 	}

@@ -1,5 +1,5 @@
 use gtk
-import gtk.[Gtk, Container, Image]
+import gtk/[Gtk, Container, Image]
 
 /**
  * A widget that creates a signal when clicked on
@@ -9,13 +9,13 @@ Button: cover from GtkButton* extends Container {
 	/**
 	 * Create a new, empty, button.
 	 */
-	new: extern(gtk_button_new) func -> This
+	new: static extern(gtk_button_new) func -> This
 	
 	/**
 	 * Create a new button from stock.
 	 * @param stockId the stock identifier, e.g. "gtk-media-play" or "gtk-ok"
 	 */
-	new: extern(gtk_button_new_from_stock) func ~fromStock (stockId: String) -> This
+	new: static extern(gtk_button_new_from_stock) func ~fromStock (stockId: String) -> This
 	
 	/**
 	 * Adjust the text shown on the button

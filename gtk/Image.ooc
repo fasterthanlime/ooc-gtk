@@ -1,5 +1,5 @@
 use gtk
-import gtk.[Gtk, Widget]
+import gtk/[Gtk, Widget]
 
 Image: cover from GtkImage* extends Widget {
 

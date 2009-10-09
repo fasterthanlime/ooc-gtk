@@ -1,5 +1,6 @@
 use gtk
 import gtk/[Gtk, _GObject, Window]
+import gdk/Drawable
 
 WidgetStruct: cover from GtkWidget {
 	window: extern GdkWindow*
@@ -42,6 +43,9 @@ Widget: cover from WidgetStruct* extends _GObject {
 	 * widget background.
 	 */
 	setAppPaintable: extern(gtk_widget_set_app_paintable) func (Bool)
+	
+	
+	getWindow: extern(gtk_widget_get_window) func -> Drawable
 	
 	/**
 	 * Force the repaint of this widget

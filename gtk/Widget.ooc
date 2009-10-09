@@ -31,6 +31,19 @@ Widget: cover from WidgetStruct* extends _GObject {
 	realize: extern(gtk_widget_realize) func
 	
 	/**
+	 * Sets whether the application intends to draw on the widget in
+	 * an "expose-event" handler.
+	 * This is a hint to the widget and does not affect the behavior of
+	 * the GTK+ core; many widgets ignore this flag entirely. For widgets
+	 * that do pay attention to the flag, such as GtkEventBox and
+	 * GtkWindow, the effect is to suppress default themed drawing of
+	 * the widget's background. (Children of the widget will still be drawn.)
+	 * The application is then entirely responsible for drawing the
+	 * widget background.
+	 */
+	setAppPaintable: extern(gtk_widget_set_app_paintable) func (Bool)
+	
+	/**
 	 * Force the repaint of this widget
 	 */
 	/*

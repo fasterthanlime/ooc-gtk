@@ -1,17 +1,6 @@
 use gtk
+import structs/List
 import gtk/[Gtk,Type,AccelGroup,Widget]
-
-GtkItemFactoryEntry: extern cover
-
-ItemFactory: cover from GtkItemFactory* {
-	
-	new: static extern(gtk_item_factory_new) func(type: Type,path: GChar*,accel_group: AccelGroup) -> This	
-	
-	createItems: extern(gtk_item_factory_create_items) func(nEntries: GInt, entries: GtkItemFactoryEntry*, callbackData: GPointer)
-	
-	getWidget: extern(gtk_item_factory_get_widget) func(widget: GChar*) -> Widget
-	
-}
 
 ItemFactoryEntry: cover from GtkItemFactoryEntry {
 	
@@ -30,5 +19,23 @@ ItemFactoryEntry: cover from GtkItemFactoryEntry {
         this itemType = itemType
         return this
     }
+	
+}
+
+ItemFactory: cover from GtkItemFactory* {
+	
+	new: static extern(gtk_item_factory_new) func(type: Type,path: GChar*,accel_group: AccelGroup) -> This	
+	
+	createItems: extern(gtk_item_factory_create_items) func(nEntries: GInt, entries: ItemFactoryEntry*, callbackData: GPointer)
+    
+    createItems: func ~arrayList (entries: List<ItemFactoryEntry>, callbackData: GPointer) {
+        createItems(entries size(), entries toArray(), callbackData)
+    }
+    
+    createItems: func ~arrayListNoCallback (entries: List<ItemFactoryEntry>) {
+        createItems(entries, null)
+    }
+	
+	getWidget: extern(gtk_item_factory_get_widget) func(widget: GChar*) -> Widget
 	
 }

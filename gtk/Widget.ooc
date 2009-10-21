@@ -1,4 +1,4 @@
-use gtk
+use gdk, gtk
 import gtk/[Gtk, _GObject, Window]
 import gdk/Drawable
 

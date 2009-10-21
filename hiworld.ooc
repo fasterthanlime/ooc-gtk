@@ -1,3 +1,5 @@
+
+
 import gtk/[Gtk, Window, Button]
 
 main: func {
@@ -5,7 +7,10 @@ main: func {
 	win setUSize(400, 200) .connect("delete_event", exit)
 	
 	button := Button new("Oh, really?")
-	button connect("clicked", func { g_print("What's so funny ?\n") }) .setBorderWidth(50)
+	button connect("clicked", func {
+        g_print("What's so funny ?\n")
+        Exception new("Oh it's the end of the world") throw()
+    }) .setBorderWidth(50)
 	
 	win add(button) .showAll()
 	Gtk main()

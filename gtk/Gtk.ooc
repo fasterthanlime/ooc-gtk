@@ -51,6 +51,8 @@ gtk_quit_add_destroy: extern func (Int, _GObject)
 
 GBool: cover from gboolean
 GInt: cover from gint
+GUInt: cover from guint
+GLong: cover from glong
 GULong: cover from gulong
 GPointer: cover from gpointer
 GChar: cover from gchar

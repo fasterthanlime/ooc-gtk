@@ -1,5 +1,5 @@
 use gtk
-import gtk/[Gtk, Container]
+import gtk/[Gtk, Container, AccelGroup]
 
 WindowStruct: cover from GtkWindow
 
@@ -28,6 +28,10 @@ Window: cover from WindowStruct* extends Container {
 	 * Change the title of this window
 	 */
 	setTitle: extern(gtk_window_set_title) func (String)
+	
+
+	
+	addAccelGroup: extern(gtk_window_add_accel_group) func (accelGroup: AccelGroup)
 	
 }
 

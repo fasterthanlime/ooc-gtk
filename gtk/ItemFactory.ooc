@@ -1,5 +1,5 @@
 use gtk
-import gtk/[Gtk,Type,AccelGroup]
+import gtk/[Gtk,Type,AccelGroup,Widget]
 
 ItemFactory: cover from GtkItemFactory* {
 	
@@ -8,6 +8,8 @@ ItemFactory: cover from GtkItemFactory* {
 	
 	
 	createItems: extern(gtk_item_factory_create_items) func(nitems: GInt,entry: ItemFactoryEntry )
+	
+	getWidget: extern(gtk_item_factory_get_widget) func(widget: GChar*) -> Widget
 	
 }
 

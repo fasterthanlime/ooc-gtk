@@ -1,4 +1,4 @@
-
+use gtk
 
 import gtk/[Gtk, Window, Button]
 
@@ -9,7 +9,7 @@ main: func {
 	button := Button new("Oh, really?")
 	button connect("clicked", func {
         g_print("What's so funny ?\n")
-        Exception new("Oh it's the end of the world") throw()
+        //Exception new("Oh it's the end of the world") throw()
     }) .setBorderWidth(50)
 	
 	win add(button) .showAll()

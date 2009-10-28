@@ -44,6 +44,9 @@ Gtk: cover {
 	quitAddDestroy: static func (object: _GObject) {
 		gtk_quit_add_destroy(1, GTK_OBJECT(object))
 	}
+	
+	
+	addTimeout: extern(g_timeout_add) func(interva: UInt32,function: Func,data: Pointer)
 
 }
 

@@ -1,5 +1,5 @@
 use gtk
-import gtk/[Gtk,Box]
+import gtk/[Gtk, Box]
 
 VBox: cover from GtkVBox* extends Box {
 

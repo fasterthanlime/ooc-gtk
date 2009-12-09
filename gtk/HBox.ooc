@@ -1,8 +1,8 @@
 use gtk
-import gtk.Box
+import gtk/[Gtk, Box]
 
-HBox from GtkHBox* extends Box {
+HBox: cover from GtkHBox* extends Box {
 
-	new: extern(gtk_hbox_new) func (homogeneous: GBool, spacing: GInt)
+	new: extern(gtk_hbox_new) static func (homogeneous: GBool, spacing: GInt) -> This
 
 }

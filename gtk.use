@@ -1,4 +1,6 @@
 Name: GTK+ 2.0
+Version: vcs
+Origin: git://github.com/nddrylliog/ooc-gtk.git
 Description: GNU User interface Toolkit
 Pkgs: gtk+-2.0
 Includes: gtk/gtk.h, gdk/gdk.h

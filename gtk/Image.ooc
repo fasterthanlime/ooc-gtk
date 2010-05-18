@@ -12,4 +12,4 @@ Image: cover from GtkImage* extends Widget {
 
 }
 
-GtkIconSize: extern cover
+GtkIconSize: extern cover extends Int

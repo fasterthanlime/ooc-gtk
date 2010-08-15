@@ -5,4 +5,4 @@ Description: GNU User interface Toolkit
 Pkgs: gtk+-2.0
 Includes: gtk/gtk.h, gdk/gdk.h
 Requires: gdk
-SourcePath: .
+SourcePath: source

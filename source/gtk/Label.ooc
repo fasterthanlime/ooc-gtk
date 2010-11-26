@@ -5,8 +5,11 @@ Label: cover from GtkLabel* extends Widget {
 
 	new: extern(gtk_label_new) static func (text: String) -> This
     
-    setText: extern(gtk_label_set_text) func (text: String)
+    setText: func (text: String) { gtk_label_set_text(this, text) }
     
-    getText: extern(gtk_label_get_text) func -> String
+    getText: func -> String { gtk_label_get_text() toString() }
 
 }
+
+gtk_label_set_text: extern func (Label, CString)
+gtk_label_get_text: extern func (Label) -> CString

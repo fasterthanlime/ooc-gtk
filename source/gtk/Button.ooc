@@ -15,12 +15,14 @@ Button: cover from GtkButton* extends Container {
 	 * Create a new button from stock.
 	 * @param stockId the stock identifier, e.g. "gtk-media-play" or "gtk-ok"
 	 */
-	new: static extern(gtk_button_new_from_stock) func ~fromStock (stockId: String) -> This
+	new: static func ~fromStock (stockId: String) -> This {
+		gtk_button_new_from_stock(stockId)
+	}
 	
 	/**
 	 * Adjust the text shown on the button
 	 */
-	setLabel: extern(gtk_button_set_label) func (label : GChar*)
+	setLabel: func (label: String) { gtk_button_set_label(this, label) }
 	
 	/**
 	 * Enable/disable the use of stock icons based of the button's text
@@ -38,3 +40,6 @@ Button: cover from GtkButton* extends Container {
 	pressed: extern(gtk_button_pressed) func
 
 }
+
+gtk_button_set_label: extern func (Button, CString)
+gtk_button_new_from_stock: extern func (CString) -> Button

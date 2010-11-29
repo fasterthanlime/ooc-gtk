@@ -8,6 +8,7 @@ _GObjectStruct: cover from GtkObject
  */
 _GObject: cover from _GObjectStruct* {
 
+<<<<<<< HEAD
 	connect: func ~nodata (signalName: String, callback: Func (...)) -> GULong {
         closure: Closure* = gc_malloc(Closure size)
         closure@ thunk   = callback as Closure thunk

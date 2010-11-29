@@ -53,8 +53,8 @@ Gtk: cover {
 gtk_quit_add_destroy: extern func (Int, _GObject)
 
 GBool: cover from gboolean extends Bool
-GInt: cover from gint extends Int
-GUInt: cover from guint extends UInt
+GInt: cover from gint extends SSizeT
+GUInt: cover from guint extends SizeT
 GLong: cover from glong extends Long
 GULong: cover from gulong extends ULong
 GPointer: cover from gpointer extends Pointer

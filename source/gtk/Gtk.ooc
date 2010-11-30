@@ -52,6 +52,8 @@ Gtk: cover {
 
 gtk_quit_add_destroy: extern func (Int, _GObject)
 
+gtk_get_current_event_time: extern func -> UInt
+
 GBool: cover from gboolean extends Bool
 GInt: cover from gint extends SSizeT
 GUInt: cover from guint extends SizeT

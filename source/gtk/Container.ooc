@@ -1,5 +1,5 @@
 use gtk
-import gtk/Widget
+import gtk/[Widget]
 
 ContainerStruct: cover from GtkContainer
 

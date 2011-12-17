@@ -66,9 +66,11 @@ keyEventsThunk: func (userData: Closure*, event: Pointer, object: _GObject) -> B
 }
 
 nakedThunk: func (userData: Closure*, object: _GObject, event: Pointer) -> Bool {
-    realFunc := userData@ as Func (Pointer)
-    data := realFunc as Closure context
-    realFunc as Closure context = event
+    closure := userData@ as Closure
+    data := closure context
+    closure context = event
+
+    realFunc := closure as Func (Pointer)
     realFunc(data)
 }
 

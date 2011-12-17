@@ -8,12 +8,12 @@ _GObjectStruct: cover from GtkObject
  */
 _GObject: cover from _GObjectStruct* {
 
-	connect: func ~nodata (signalName: String, callback: Func (...)) -> GULong {
+    connect: func ~nodata (signalName: String, callback: Func (...)) -> GULong {
         closure: Closure* = gc_malloc(Closure size)
         closure@ thunk   = callback as Closure thunk
         closure@ context = callback as Closure context
         g_signal_connect_swapped(this, signalName, GTK_SIGNAL_FUNC(thunk), closure)
-	}
+    }
     
     connectNaked: func (signalName: String, context, callback: Pointer) -> GULong {
         closure: Closure* = gc_malloc(Closure size)

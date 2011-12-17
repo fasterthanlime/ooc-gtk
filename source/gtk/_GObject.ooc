@@ -22,7 +22,15 @@ _GObject: cover from _GObjectStruct* {
         gcHack add(c context)
         g_signal_connect_swapped(this, signalName, GTK_SIGNAL_FUNC(c thunk), c context)
     }
-    
+
+    /**
+     * usage:
+     *
+     * object connectNaked("some-signal", this, doStuff)
+     * 
+     * Hopefully the first pointer argument of doStuff will be event
+     * except if it's a keyboard event in which case you want the function below
+     */
     connectNaked: func (signalName: String, context, callback: Pointer) -> GULong {
         closure: Closure* = gc_malloc(Closure size)
         closure@ thunk   = callback
@@ -33,6 +41,28 @@ _GObject: cover from _GObjectStruct* {
         g_signal_connect_swapped(this, signalName, GTK_SIGNAL_FUNC(nakedThunk), closure)
     }
 
+    /**
+     * usage:
+     * 
+     * object connectKeyEvent("key-press-event", |event| doStuff())
+     *
+     * Yes this is horrible. Blame gobject for having a kajillion different
+     * callback types.
+     */
+    connectKeyEvent: func (signalName: String, callback: Func (Pointer)) -> GULong {
+        closure: Closure* = gc_malloc(Closure size)
+        // FIXME: this will leaaaaak
+        gcHack add(closure)
+        memcpy(closure, callback&, Closure size)
+
+        g_signal_connect_swapped(this, signalName, GTK_SIGNAL_FUNC(keyEventsThunk), closure)
+    }
+
+}
+
+keyEventsThunk: func (userData: Closure*, event: Pointer, object: _GObject) -> Bool {
+    realFunc := userData@ as Func (Pointer)
+    realFunc(event)
 }
 
 nakedThunk: func (userData: Closure*, object: _GObject, event: Pointer) -> Bool {
@@ -41,6 +71,7 @@ nakedThunk: func (userData: Closure*, object: _GObject, event: Pointer) -> Bool 
     realFunc as Closure context = event
     realFunc(data)
 }
+
 
 GTK_OBJECT: extern func (_GObject) -> _GObject
 GTK_SIGNAL_FUNC: extern func (Pointer) -> Pointer

@@ -27,6 +27,9 @@ _GObject: cover from _GObjectStruct* {
         closure: Closure* = gc_malloc(Closure size)
         closure@ thunk   = callback
         closure@ context = context
+        // FIXME: this will leaaaaak
+        gcHack add(closure)
+
         g_signal_connect_swapped(this, signalName, GTK_SIGNAL_FUNC(nakedThunk), closure)
     }
 

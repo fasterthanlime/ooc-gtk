@@ -30,7 +30,7 @@ ItemFactory: cover from GtkItemFactory* {
 	createItems: extern(gtk_item_factory_create_items) func(nEntries: GInt, entries: ItemFactoryEntry*, callbackData: GPointer)
 
     createItems: func ~arrayList (entries: List<ItemFactoryEntry>, callbackData: GPointer) {
-        createItems(entries size(), entries toArray(), callbackData)
+        createItems(entries size, entries toArray(), callbackData)
     }
 
     createItems: func ~arrayListNoCallback (entries: List<ItemFactoryEntry>) {

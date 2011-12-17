@@ -46,7 +46,7 @@ Gtk: cover {
 	}
 	
 	
-	addTimeout: static func (interval: UInt, f: Func) {
+	addTimeout: static func (interval: UInt, f: Func -> Bool) {
             c := f as Closure
             g_timeout_add(interval as GUInt, c thunk, c context)
         }

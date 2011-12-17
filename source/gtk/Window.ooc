@@ -3,10 +3,14 @@ import gtk/[Gtk, Container, AccelGroup]
 
 WindowStruct: cover from GtkWindow
 
+GtkWindowPosition: cover from Int
+
 /**
  * A simple Gtk window
  */
 Window: cover from WindowStruct* extends Container {
+
+        POS_CENTER: extern(GTK_WIN_POS_CENTER) static GtkWindowPosition
 	
 	/**
 	 * Create a new top-level window
@@ -28,8 +32,8 @@ Window: cover from WindowStruct* extends Container {
 	 * Change the title of this window
 	 */
 	setTitle: func (title: String) { gtk_window_set_title(this, title) }
-	
 
+        setPosition: extern(gtk_window_set_position) func (position: GtkWindowPosition)
 	
 	addAccelGroup: extern(gtk_window_add_accel_group) func (accelGroup: AccelGroup)
 	

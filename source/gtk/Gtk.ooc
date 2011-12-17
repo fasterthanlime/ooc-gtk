@@ -46,9 +46,14 @@ Gtk: cover {
 	}
 	
 	
-	addTimeout: extern(g_timeout_add) func(interva: UInt32,function: Func,data: Pointer)
+	addTimeout: static func (interval: UInt, f: Func) {
+            c := f as Closure
+            g_timeout_add(interval as GUInt, c thunk, c context)
+        }
 
 }
+
+g_timeout_add: extern func (interval: GUInt, function: Pointer, data: Pointer)
 
 gtk_quit_add_destroy: extern func (Int, _GObject)
 

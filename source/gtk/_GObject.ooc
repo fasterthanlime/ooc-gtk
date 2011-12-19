@@ -58,6 +58,10 @@ _GObject: cover from _GObjectStruct* {
         g_signal_connect_swapped(this, signalName, GTK_SIGNAL_FUNC(keyEventsThunk), closure)
     }
 
+    disconnect: func (handlerID: GULong) {
+        g_signal_handler_disconnect(this, handlerID)
+    }
+
 }
 
 keyEventsThunk: func (userData: Closure*, event: Pointer, object: _GObject) -> Bool {
@@ -79,3 +83,5 @@ GTK_OBJECT: extern func (_GObject) -> _GObject
 GTK_SIGNAL_FUNC: extern func (Pointer) -> Pointer
 g_signal_connect: extern func (_GObject, CString, Pointer, Pointer) -> GULong
 g_signal_connect_swapped: extern func (_GObject, CString, Pointer, Pointer) -> GULong
+g_signal_handler_disconnect: extern func (_GObject, GULong)
+

@@ -60,7 +60,7 @@ gtk_quit_add_destroy: extern func (Int, _GObject)
 gtk_get_current_event_time: extern func -> UInt
 
 GBool: cover from gboolean extends Bool
-GInt: cover from gint extends SSizeT
+GInt: cover from gint extends Int
 GUInt: cover from guint extends SizeT
 GLong: cover from glong extends Long
 GULong: cover from gulong extends ULong

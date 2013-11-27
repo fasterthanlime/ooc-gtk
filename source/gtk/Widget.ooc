@@ -44,24 +44,23 @@ Widget: cover from WidgetStruct* extends _GObject {
 	 */
 	setAppPaintable: extern(gtk_widget_set_app_paintable) func (Bool)
 
-
 	getWindow: extern(gtk_widget_get_window) func -> Drawable
 
 	/*
 	 * Force the repaint of this widget
 	 */
-	/*
 	forceRepaint: func (childrenToo: Bool) {
 
 		while(Gtk eventsPending()) {
 			Gtk mainIteration()
 		}
 		// ugly workaround
-		gdk_window_invalidate_rect(this@ as WidgetStruct window, null, childrenToo)
-		gdk_window_process_updates(this@ as WidgetStruct window, childrenToo)
+                ws := this@ as WidgetStruct
+                window := ws window
+		gdk_window_invalidate_rect(window, null, childrenToo)
+		gdk_window_process_updates(window, childrenToo)
 
 	}
-	*/
 
 	/**
 	 * Shows this widget on-screen.
@@ -103,21 +102,21 @@ Widget: cover from WidgetStruct* extends _GObject {
 	 * The height of this window
 	 */
 	getWidth: func -> Int {
-		// FIXME ugly workaround
-		return this@ as WidgetStruct allocation width;
+            // FIXME ugly workaround
+            return this@ as WidgetStruct allocation width;
 	}
 
 	/**
 	 * The height of this window
 	 */
 	getHeight: func -> Int {
-		// FIXME ugly workaround
-		return this@as WidgetStruct  allocation height;
+            // FIXME ugly workaround
+            return this@ as WidgetStruct  allocation height;
 	}
 
 	/*
 	getStyle: func -> Style {
-		return gtk_widget_get_style(this) as Style;
+            return gtk_widget_get_style(this) as Style;
 	}
 	*/
 
@@ -158,5 +157,6 @@ GtkAllocation: extern cover {
     width, height: extern Int
 }
 
-gdk_window_invalidate_rect: extern func (GdkWindow*, GdkRectangle, Bool)
-gdk_window_process_updates: extern func (GdkWindow*, Bool)
+gdk_window_invalidate_rect: extern func (Pointer, Pointer, Bool)
+gdk_window_process_updates: extern func (Pointer, Bool)
+
